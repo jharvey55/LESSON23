@@ -13,7 +13,15 @@ def index(): # return something after each rotue
 @app.route('/weather')
 def get_weather():
     city = request.args.get('city') # get city from user input
+    
+    if not bool(city.strip()): # handle blank input
+        city = "Austin"
+    
     weather_data = get_current_weather(city) # pass in city data to weather_data
+    
+    # City not found by API
+    if not weather_data['cod'] == 200:
+        return render_template('city-not-found.html')
     
     return render_template('weather.html',              # Template to fill
                            title=weather_data['name'],  # pass city name to template
