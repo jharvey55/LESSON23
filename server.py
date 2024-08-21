@@ -11,3 +11,5 @@ def index(): # return something after each rotue
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000) # runs the app on localhost:5000
+    
+    
